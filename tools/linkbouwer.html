@@ -1,0 +1,564 @@
+<title>Master Pullz Linkbouwer</title>
+<style>
+  :root{
+    --ground:#F5F5F7;
+    --surface:#FFFFFF;
+    --surface-2:#FAFAFB;
+    --field:#FFFFFF;
+    --ink:#1D1D1F;
+    --ink-2:#6E6E73;
+    --ink-3:#8E8E93;
+    --sep:rgba(60,60,67,0.13);
+    --sep-strong:rgba(60,60,67,0.22);
+    --accent:#635BFF;
+    --accent-soft:rgba(99,91,255,0.10);
+    --accent-ink:#4B44CC;
+    --good:#34C759;
+    --good-ink:#1E7E38;
+    --good-soft:rgba(52,199,89,0.13);
+    --warn:#FF9500;
+    --warn-ink:#8A5200;
+    --warn-soft:rgba(255,149,0,0.13);
+    --shadow:0 1px 2px rgba(0,0,0,0.05);
+    --shadow-lift:0 4px 16px rgba(0,0,0,0.06);
+    --r:18px;
+    --r-sm:10px;
+    --ui:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0A0A0C;
+      --surface:#17171A;
+      --surface-2:#1D1D21;
+      --field:#232327;
+      --ink:#F2F2F5;
+      --ink-2:#A1A1A8;
+      --ink-3:#7C7C84;
+      --sep:rgba(255,255,255,0.11);
+      --sep-strong:rgba(255,255,255,0.20);
+      --accent:#8177FF;
+      --accent-soft:rgba(129,119,255,0.16);
+      --accent-ink:#A79FFF;
+      --good:#32D74B;
+      --good-ink:#4ADE6A;
+      --good-soft:rgba(50,215,75,0.15);
+      --warn:#FF9F0A;
+      --warn-ink:#FFBE4D;
+      --warn-soft:rgba(255,159,10,0.15);
+      --shadow:0 1px 2px rgba(0,0,0,0.4);
+      --shadow-lift:0 4px 18px rgba(0,0,0,0.45);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0A0A0C;
+    --surface:#17171A;
+    --surface-2:#1D1D21;
+    --field:#232327;
+    --ink:#F2F2F5;
+    --ink-2:#A1A1A8;
+    --ink-3:#7C7C84;
+    --sep:rgba(255,255,255,0.11);
+    --sep-strong:rgba(255,255,255,0.20);
+    --accent:#8177FF;
+    --accent-soft:rgba(129,119,255,0.16);
+    --accent-ink:#A79FFF;
+    --good:#32D74B;
+    --good-ink:#4ADE6A;
+    --good-soft:rgba(50,215,75,0.15);
+    --warn:#FF9F0A;
+    --warn-ink:#FFBE4D;
+    --warn-soft:rgba(255,159,10,0.15);
+    --shadow:0 1px 2px rgba(0,0,0,0.4);
+    --shadow-lift:0 4px 18px rgba(0,0,0,0.45);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:var(--ui);
+    font-size:15px;
+    line-height:1.45;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1200px;margin:0 auto;padding:36px 28px 72px}
+
+  /* ── Header ─────────────────────────── */
+  .top{display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+  .mark{width:38px;height:38px;border-radius:11px;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .top-txt{flex:1;min-width:260px;display:flex;flex-direction:column;gap:5px}
+  h1{font-size:30px;line-height:1.1;letter-spacing:-0.026em;font-weight:600;margin:0;text-wrap:balance}
+  .sub{color:var(--ink-2);font-size:15px;max-width:62ch;margin:0}
+  .eyebrow{font-size:13px;font-weight:600;color:var(--ink-3);letter-spacing:0.01em;margin:0}
+
+  /* ── Layout ─────────────────────────── */
+  .cols{display:grid;grid-template-columns:392px minmax(0,1fr);gap:24px;align-items:start}
+  @media (max-width:940px){.cols{grid-template-columns:minmax(0,1fr)}}
+  .col{display:flex;flex-direction:column;gap:26px;min-width:0}
+
+  section{display:flex;flex-direction:column;gap:9px;min-width:0}
+  .lbl{font-size:15px;color:var(--ink-2);padding-inline:4px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .lbl b{color:var(--ink);font-weight:600}
+  .lbl .hint{font-size:13px;color:var(--ink-3)}
+  .card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+
+  /* ── Rows / fields ──────────────────── */
+  .row{padding-inline:18px}
+  .row > .in{padding-block:12px;border-bottom:1px solid var(--sep);display:flex;flex-direction:column;gap:6px}
+  .row:last-child > .in{border-bottom:0}
+  .flabel{font-size:13px;color:var(--ink-3);font-weight:500}
+  input[type=text],input[type=date]{
+    font-family:var(--ui);font-size:15px;color:var(--ink);
+    background:transparent;border:0;padding:0;width:100%;
+  }
+  input::placeholder{color:var(--ink-3)}
+  input:focus{outline:none}
+  .row > .in:focus-within .flabel{color:var(--accent)}
+  .row > .in:focus-within{box-shadow:inset 3px 0 0 -1px var(--accent)}
+
+  .fix{font-size:13px;color:var(--accent-ink);background:var(--accent-soft);border-radius:7px;padding:5px 9px;display:none;align-items:center;gap:7px;align-self:flex-start}
+  .fix.on{display:flex}
+  .fix code{font-family:var(--mono);font-size:12px}
+
+  /* ── Channel toggles ────────────────── */
+  .chan{display:flex;align-items:center;gap:12px;padding-block:11px;border-bottom:1px solid var(--sep);cursor:pointer;user-select:none}
+  .row:last-child .chan{border-bottom:0}
+  .dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+  .chan .nm{flex:1;font-size:15px}
+  .sw{width:44px;height:26px;border-radius:999px;background:var(--sep-strong);flex-shrink:0;padding:2px;display:flex;transition:background .18s ease}
+  .sw i{width:22px;height:22px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .18s ease}
+  .chan.on .sw{background:var(--good)}
+  .chan.on .sw i{transform:translateX(18px)}
+  .chan:not(.on) .nm{color:var(--ink-3)}
+  .chan:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+
+  /* ── Preview chip ───────────────────── */
+  .slugbox{background:var(--surface-2);border-radius:var(--r-sm);padding:12px 14px;display:flex;flex-direction:column;gap:5px;margin:14px 18px 18px}
+  .slugbox .k{font-size:13px;color:var(--ink-3)}
+  .slugbox .v{font-family:var(--mono);font-size:13px;color:var(--ink);word-break:break-all}
+
+  /* ── Output ─────────────────────────── */
+  .link{padding-inline:18px}
+  .link > .in{padding-block:13px;border-bottom:1px solid var(--sep);display:flex;align-items:center;gap:13px;min-width:0}
+  .link:last-child > .in{border-bottom:0}
+  .link .nm{width:86px;flex-shrink:0;font-size:15px;font-weight:500;display:flex;align-items:center;gap:9px}
+  .url{flex:1;min-width:0;font-family:var(--mono);font-size:12.5px;color:var(--ink-2);white-space:nowrap;overflow-x:auto;padding-block:3px}
+  .url::-webkit-scrollbar{height:0}
+  .cp{flex-shrink:0;font-family:var(--ui);font-size:13px;font-weight:500;color:var(--accent);background:var(--accent-soft);border:0;border-radius:999px;padding:6px 13px;cursor:pointer;transition:opacity .15s ease}
+  .cp:hover{opacity:.72}
+  .cp:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .cp.done{color:var(--good-ink);background:var(--good-soft)}
+
+  .bar{display:flex;gap:10px;flex-wrap:wrap;padding:14px 18px;border-top:1px solid var(--sep);background:var(--surface-2)}
+  .btn{font-family:var(--ui);font-size:14px;font-weight:500;border:0;border-radius:10px;padding:9px 15px;cursor:pointer;transition:opacity .15s ease}
+  .btn:hover{opacity:.82}
+  .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .btn.pri{background:var(--accent);color:#fff}
+  .btn.sec{background:var(--sep);color:var(--ink)}
+  .btn.done{background:var(--good-soft);color:var(--good-ink)}
+
+  /* ── Saved fairs ────────────────────── */
+  .chips{display:flex;gap:9px;flex-wrap:wrap;padding:14px 18px}
+  .chip{display:flex;align-items:center;gap:9px;background:var(--surface-2);border-radius:999px;padding:7px 8px 7px 14px;font-size:14px}
+  .chip button{border:0;background:transparent;cursor:pointer;font-family:var(--ui);font-size:14px;color:var(--ink);padding:0}
+  .chip button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+  .chip .x{width:20px;height:20px;border-radius:999px;color:var(--ink-3);display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1}
+  .chip .x:hover{background:var(--sep);color:var(--ink)}
+  .empty{padding:16px 18px;color:var(--ink-3);font-size:14px}
+
+  /* ── Macro block ────────────────────── */
+  pre{margin:0;font-family:var(--mono);font-size:12.5px;line-height:1.65;color:var(--ink);background:var(--surface-2);border-radius:var(--r-sm);padding:13px 15px;overflow-x:auto;white-space:pre;word-break:normal}
+  .macro{padding:16px 18px;display:flex;flex-direction:column;gap:9px;border-bottom:1px solid var(--sep)}
+  .macro:last-child{border-bottom:0}
+  .macro h3{margin:0;font-size:15px;font-weight:600}
+  .macro p{margin:0;font-size:13px;color:var(--ink-2)}
+
+  .note{display:flex;gap:11px;padding:15px 18px;align-items:flex-start}
+  .note svg{flex-shrink:0;margin-top:1px}
+  .note p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.5}
+  .note p b{color:var(--ink);font-weight:600}
+
+  .foot{margin-top:34px;padding-top:20px;border-top:1px solid var(--sep);color:var(--ink-3);font-size:13px;display:flex;gap:8px;flex-wrap:wrap}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="mark" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 16 16" fill="none"><path d="M3.2 5.2 8 2.4l4.8 2.8v5.6L8 13.6 3.2 10.8V5.2Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 8 12.8 5.2M8 8v5.6M8 8 3.2 5.2" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="top-txt">
+      <p class="eyebrow">Master Pullz OS</p>
+      <h1>Linkbouwer</h1>
+      <p class="sub">Maakt de trackinglinks voor één beurs. Namen worden automatisch omgezet naar de schrijfwijze die het dashboard verwacht, zodat kanalen, campagnes en edities niet uit elkaar gaan lopen.</p>
+    </div>
+  </header>
+
+  <div class="cols">
+
+    <!-- ══ LEFT: configurator ══ -->
+    <div class="col">
+
+      <section>
+        <div class="lbl"><b>Beurs</b></div>
+        <div class="card">
+          <div class="row"><label class="in">
+            <span class="flabel">Locatie</span>
+            <input type="text" id="loc" value="Heerenveen" placeholder="Heerenveen" autocomplete="off">
+            <span class="fix" id="fixloc"></span>
+          </label></div>
+          <div class="row"><label class="in">
+            <span class="flabel">Datum</span>
+            <input type="date" id="date" value="2026-09-27">
+          </label></div>
+          <div class="row"><label class="in">
+            <span class="flabel">Weticket shop</span>
+            <input type="text" id="base" value="https://master-pullz-expo.weticket.io/master-pullz-heerenveen-round-2/shop" placeholder="https://..." autocomplete="off" spellcheck="false">
+          </label></div>
+          <div class="slugbox">
+            <span class="k">utm_campaign wordt</span>
+            <span class="v" id="campprev">heerenveen-2026-09-27</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="lbl"><b>Verfijning</b> <span class="hint">optioneel</span></div>
+        <div class="card">
+          <div class="row"><label class="in">
+            <span class="flabel">Campagne</span>
+            <input type="text" id="camp" placeholder="early-bird" autocomplete="off">
+            <span class="fix" id="fixcamp"></span>
+          </label></div>
+          <div class="row"><label class="in">
+            <span class="flabel">Doelgroep of zoekwoord · utm_term</span>
+            <input type="text" id="term" placeholder="lookalike-1-kopers" autocomplete="off">
+            <span class="fix" id="fixterm"></span>
+          </label></div>
+          <div class="row"><label class="in">
+            <span class="flabel">Creative · utm_content</span>
+            <input type="text" id="content" placeholder="grading-table-15s" autocomplete="off">
+            <span class="fix" id="fixcontent"></span>
+          </label></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="lbl"><b>Kanalen</b></div>
+        <div class="card" id="chans"></div>
+      </section>
+
+      <section>
+        <div class="lbl"><b>Opgeslagen beurzen</b></div>
+        <div class="card">
+          <div id="chips" class="chips"></div>
+          <div class="bar">
+            <button class="btn pri" id="save">Deze beurs opslaan</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ══ RIGHT: output ══ -->
+    <div class="col">
+
+      <section>
+        <div class="lbl"><b>Links</b> <span class="hint" id="linkcount"></span></div>
+        <div class="card">
+          <div id="links"></div>
+          <div class="bar">
+            <button class="btn pri" id="copyall">Kopieer voor de sheet</button>
+            <button class="btn sec" id="copyplain">Alleen de URL's</button>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="lbl"><b>Automatisch invullen per advertentie</b></div>
+        <div class="card">
+          <div class="note">
+            <svg width="17" height="17" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.4" stroke="currentColor" stroke-width="1.3" opacity=".45"/><path d="M8 7.3v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".45"/><circle cx="8" cy="4.9" r=".8" fill="currentColor" opacity=".45"/></svg>
+            <p>Vijf kanalen maal zes campagnes maal vier creatives zijn honderdtwintig links. Zet in plaats daarvan dit één keer in het advertentieplatform, dan vult elke nieuwe campagne en creative zichzelf in.</p>
+          </div>
+          <div class="macro">
+            <h3>Meta</h3>
+            <p>Advertentieniveau, veld <b>URL parameters</b>.</p>
+            <pre id="metamacro"></pre>
+          </div>
+          <div class="macro">
+            <h3>Google Ads</h3>
+            <p>Bij <b>Trackingsjabloon</b> of achtervoegsel voor de uiteindelijke URL. Google geeft ID's in plaats van namen, dus koppel die later aan de campagnenamen.</p>
+            <pre id="googlemacro"></pre>
+          </div>
+          <div class="macro">
+            <h3>TikTok, Snapchat en Reddit</h3>
+            <p>Zelfde opbouw, maar elk platform schrijft zijn macro's anders. Zoek in hun documentatie op welke code de campagnenaam en de advertentienaam invult en zet die op de plek van de haakjes.</p>
+            <pre id="othermacro"></pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="lbl"><b>De afspraken die dit afdwingt</b></div>
+        <div class="card">
+          <div class="link"><div class="in"><span class="nm" style="width:auto">Kleine letters</span><span class="url" style="white-space:normal;color:var(--ink-2)">Meta en meta zijn voor GA4 twee verschillende bronnen. Eén hoofdletter kost je een rij in de tabel.</span></div></div>
+          <div class="link"><div class="in"><span class="nm" style="width:auto">cpc</span><span class="url" style="white-space:normal;color:var(--ink-2)">Het enige woord dat elke tool leest als betaalde klik. Waarden als socialads worden niet herkend en belanden bij organisch verkeer.</span></div></div>
+          <div class="link"><div class="in"><span class="nm" style="width:auto">Datum vooraan</span><span class="url" style="white-space:normal;color:var(--ink-2)">Jaar maand dag, zodat edities vanzelf op volgorde staan. 27-9 zou anders vóór 3-10 komen.</span></div></div>
+          <div class="link"><div class="in"><span class="nm" style="width:auto">Dubbel streepje</span><span class="url" style="white-space:normal;color:var(--ink-2)">Scheidt de editie van de campagne. Namen bevatten zelf al koppeltekens, dus splitsen op <code style="font-family:var(--mono);font-size:12px">--</code> blijft betrouwbaar.</span></div></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <p class="foot"><span>Master Pullz OS · Linkbouwer</span><span>·</span><span>Instellingen blijven in deze browser bewaard</span></p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var CHANNELS = [
+    {id:"meta",     label:"Meta",     color:"#635BFF"},
+    {id:"tiktok",   label:"TikTok",   color:"#7C74FF"},
+    {id:"snapchat", label:"Snapchat", color:"#9A93FF"},
+    {id:"reddit",   label:"Reddit",   color:"#B8B2FF"},
+    {id:"google",   label:"Google",   color:"#4F7CFF"}
+  ];
+  var KEY = "mp-linkbouwer-v1";
+  var on = {};
+  CHANNELS.forEach(function(c){ on[c.id] = true; });
+
+  var $ = function(id){ return document.getElementById(id); };
+
+  function slug(s){
+    return (s||"")
+      .normalize("NFD").replace(/[̀-ͯ]/g,"")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g,"-")
+      .replace(/^-+|-+$/g,"");
+  }
+
+  /* Show the correction only when the typed value differs from its slug. */
+  function watch(inputId, fixId){
+    var i = $(inputId), f = $(fixId);
+    var raw = i.value, s = slug(raw);
+    if(raw.trim() && raw !== s){
+      f.className = "fix on";
+      f.innerHTML = "aangepast naar <code>" + s + "</code>";
+    } else {
+      f.className = "fix";
+      f.textContent = "";
+    }
+    return s;
+  }
+
+  function campaign(){
+    var loc  = watch("loc","fixloc");
+    var camp = watch("camp","fixcamp");
+    var d    = $("date").value || "";
+    var base = loc ? (d ? loc + "-" + d : loc) : d;
+    return camp ? base + "--" + camp : base;
+  }
+
+  function shopBase(){
+    var v = ($("base").value || "").trim();
+    return v.split("?")[0].split("#")[0];
+  }
+
+  function urlFor(source){
+    var p = ["utm_source=" + source, "utm_medium=cpc", "utm_campaign=" + campaign()];
+    var t = watch("term","fixterm");
+    var c = watch("content","fixcontent");
+    if(t) p.push("utm_term=" + t);
+    if(c) p.push("utm_content=" + c);
+    return shopBase() + "?" + p.join("&");
+  }
+
+  function active(){ return CHANNELS.filter(function(c){ return on[c.id]; }); }
+
+  /* ── Copy helper: clipboard API with a textarea fallback ── */
+  function copy(text, btn, label){
+    var done = function(){
+      var old = btn.textContent;
+      btn.textContent = label || "Gekopieerd";
+      btn.classList.add("done");
+      setTimeout(function(){ btn.textContent = old; btn.classList.remove("done"); }, 1500);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); });
+    } else { fallback(text, done); }
+  }
+  function fallback(text, cb){
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); cb(); }catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  /* ── Render ── */
+  function renderChannels(){
+    var box = $("chans");
+    box.textContent = "";
+    CHANNELS.forEach(function(c){
+      var row = document.createElement("div");
+      row.className = "row";
+      var b = document.createElement("div");
+      b.className = "chan" + (on[c.id] ? " on" : "");
+      b.tabIndex = 0;
+      b.setAttribute("role","switch");
+      b.setAttribute("aria-checked", on[c.id] ? "true" : "false");
+      b.innerHTML =
+        '<span class="dot" style="background:' + c.color + '"></span>' +
+        '<span class="nm">' + c.label + '</span>' +
+        '<span class="sw"><i></i></span>';
+      var flip = function(){
+        on[c.id] = !on[c.id];
+        b.classList.toggle("on", on[c.id]);
+        b.setAttribute("aria-checked", on[c.id] ? "true" : "false");
+        renderLinks();
+      };
+      b.addEventListener("click", flip);
+      b.addEventListener("keydown", function(e){
+        if(e.key === " " || e.key === "Enter"){ e.preventDefault(); flip(); }
+      });
+      row.appendChild(b);
+      box.appendChild(row);
+    });
+  }
+
+  function renderLinks(){
+    $("campprev").textContent = campaign() || "—";
+    var box = $("links");
+    box.textContent = "";
+    var list = active();
+    $("linkcount").textContent = list.length + " van " + CHANNELS.length + " kanalen";
+
+    if(!list.length){
+      var e = document.createElement("div");
+      e.className = "empty";
+      e.textContent = "Zet minstens één kanaal aan.";
+      box.appendChild(e);
+    }
+
+    list.forEach(function(c){
+      var u = urlFor(c.id);
+      var row = document.createElement("div");
+      row.className = "link";
+      var inn = document.createElement("div");
+      inn.className = "in";
+
+      var nm = document.createElement("span");
+      nm.className = "nm";
+      nm.innerHTML = '<span class="dot" style="background:' + c.color + '"></span>' + c.label;
+
+      var url = document.createElement("span");
+      url.className = "url";
+      url.textContent = u;
+
+      var btn = document.createElement("button");
+      btn.className = "cp";
+      btn.type = "button";
+      btn.textContent = "Kopieer";
+      btn.addEventListener("click", function(){ copy(u, btn); });
+
+      inn.appendChild(nm); inn.appendChild(url); inn.appendChild(btn);
+      row.appendChild(inn); box.appendChild(row);
+    });
+
+    var camp = campaign();
+    $("metamacro").textContent =
+      "utm_source=meta&utm_medium=cpc&utm_campaign=" + camp + "--{{campaign.name}}\n" +
+      "&utm_term={{adset.name}}&utm_content={{ad.name}}";
+    $("googlemacro").textContent =
+      shopBase() + "?utm_source=google&utm_medium=cpc\n" +
+      "&utm_campaign=" + camp + "--{campaignid}&utm_content={creative}";
+    $("othermacro").textContent =
+      "utm_source=snapchat&utm_medium=cpc&utm_campaign=" + camp + "--[CAMPAGNENAAM]\n" +
+      "&utm_content=[ADVERTENTIENAAM]";
+  }
+
+  /* ── Saved fairs ── */
+  function load(){
+    try{ return JSON.parse(localStorage.getItem(KEY)) || []; }catch(e){ return []; }
+  }
+  function store(v){
+    try{ localStorage.setItem(KEY, JSON.stringify(v)); }catch(e){}
+  }
+  function renderChips(){
+    var box = $("chips"), saved = load();
+    box.textContent = "";
+    if(!saved.length){
+      var e = document.createElement("span");
+      e.className = "empty";
+      e.style.padding = "2px 0";
+      e.textContent = "Nog geen beurzen opgeslagen.";
+      box.appendChild(e);
+      return;
+    }
+    saved.forEach(function(s, i){
+      var chip = document.createElement("span");
+      chip.className = "chip";
+
+      var open = document.createElement("button");
+      open.type = "button";
+      open.textContent = s.name;
+      open.addEventListener("click", function(){
+        $("loc").value = s.loc; $("date").value = s.date; $("base").value = s.base;
+        $("camp").value = s.camp || ""; $("term").value = s.term || ""; $("content").value = s.content || "";
+        renderLinks();
+      });
+
+      var del = document.createElement("button");
+      del.type = "button";
+      del.className = "x";
+      del.setAttribute("aria-label", "Verwijder " + s.name);
+      del.textContent = "×";
+      del.addEventListener("click", function(){
+        var v = load(); v.splice(i,1); store(v); renderChips();
+      });
+
+      chip.appendChild(open); chip.appendChild(del);
+      box.appendChild(chip);
+    });
+  }
+
+  $("save").addEventListener("click", function(){
+    var loc = $("loc").value.trim(), d = $("date").value;
+    if(!loc || !d){ return; }
+    var name = loc + " · " + d.split("-").reverse().join("-");
+    var v = load().filter(function(x){ return x.name !== name; });
+    v.unshift({
+      name:name, loc:loc, date:d, base:$("base").value.trim(),
+      camp:$("camp").value.trim(), term:$("term").value.trim(), content:$("content").value.trim()
+    });
+    store(v.slice(0,12));
+    renderChips();
+    var b = $("save"), old = b.textContent;
+    b.textContent = "Opgeslagen"; b.classList.add("done");
+    setTimeout(function(){ b.textContent = old; b.classList.remove("done"); }, 1500);
+  });
+
+  $("copyall").addEventListener("click", function(){
+    var t = active().map(function(c){ return c.label + "\t" + urlFor(c.id); }).join("\n");
+    copy(t, $("copyall"));
+  });
+  $("copyplain").addEventListener("click", function(){
+    var t = active().map(function(c){ return urlFor(c.id); }).join("\n");
+    copy(t, $("copyplain"));
+  });
+
+  ["loc","date","base","camp","term","content"].forEach(function(id){
+    $(id).addEventListener("input", renderLinks);
+  });
+
+  renderChannels();
+  renderChips();
+  renderLinks();
+})();
+</script>

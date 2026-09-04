@@ -1,0 +1,13 @@
+# Voeg dit toe aan ~/.hermes/config.yaml onder mcp_servers, naast composio.
+# Daarmee kan de Operator hetzelfde Paper bestand aansturen als Claude Code.
+#
+# Paper werkt altijd op het bestand dat op dat moment open staat in de app.
+# Staat er niets open, dan geeft elke tool "Open a Paper file to use this tool".
+# Let op: Paper heeft een weeklimiet op MCP aanroepen.
+
+mcp_servers:
+  paper:
+    command: /Users/kylianhos/.paper/bin/paper
+    args: ["mcp"]
+    connect_timeout: 60
+    timeout: 120

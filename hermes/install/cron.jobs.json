@@ -1,0 +1,50 @@
+{
+  "jobs": [
+    {
+      "id": "mpos-pipeline",
+      "name": "Master Pullz OS pijplijn",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "sh hermes/run.sh demo",
+      "no_agent": true,
+      "workdir": "/Users/kylianhos/agent agency/masterpullz-os",
+      "schedule": {
+        "kind": "cron",
+        "expr": "5 * * * *",
+        "display": "elk uur op :05"
+      },
+      "repeat": true,
+      "enabled": true,
+      "deliver": "on_error",
+      "origin": "masterpullz-os"
+    },
+    {
+      "id": "mpos-operator",
+      "name": "Master Pullz OS operator",
+      "prompt": "Je bent de Operator van Master Pullz OS. Volg de skill masterpullz-os.\n\n1. Lees data/latest.json. Gebruik uitsluitend getallen die daarin staan.\n2. Kijk of de verkoop voor of achter ligt op het benodigde tempo richting het doel.\n3. Kijk per kanaal naar spend, tickets en toegewezen omzet. Bereken ROAS en CPA zelf uit die metingen en noem welke velden je gebruikt.\n4. Kijk naar creatives met een hoge frequentie of een dalende opbrengst.\n5. Schrijf hooguit vijf voorstellen naar data/proposals.json, met evidence erbij. Voer niets uit.\n6. Sluit af met drie regels: staat de verkoop op schema, waar gaat het geld heen, en wat vraagt vandaag een besluit.\n\nIs environment gelijk aan demo, zeg dat er dan expliciet bij. Faalt de validatie, publiceer dan niets en meld alleen de fout.",
+      "skills": [
+        "masterpullz-os"
+      ],
+      "skill": "masterpullz-os",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "workdir": "/Users/kylianhos/agent agency/masterpullz-os",
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 7 * * *",
+        "display": "dagelijks 07:15"
+      },
+      "repeat": true,
+      "enabled": true,
+      "deliver": "always",
+      "origin": "masterpullz-os"
+    }
+  ]
+}

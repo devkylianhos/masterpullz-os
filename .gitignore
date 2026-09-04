@@ -1,0 +1,15 @@
+# Gegenereerd door de pijplijn, hoort niet in versiebeheer
+data/raw/
+data/latest.json
+data/.pipeline.lock
+data/proposals.json
+dist/
+
+# Nooit sleutels in de repo. Die staan in de omgeving van de machine zelf.
+.env
+*.env
+!*.env.example
+
+__pycache__/
+*.pyc
+.DS_Store

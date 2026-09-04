@@ -1,0 +1,216 @@
+{
+  "contract_version": "1.0",
+  "generated_at": "2026-09-03T21:58:00+02:00",
+  "environment": "demo",
+  "config": {
+    "product_name": "Master Pullz OS",
+    "product_subtitle": "Expo Performance Control Center",
+    "client_name": "Master Pullz",
+    "client_initials": "MP",
+    "team_size": 4,
+    "locale": "nl-NL",
+    "currency": "EUR",
+    "channels": [
+      { "id": "meta",    "label": "Meta Ads",       "paid": true,  "color": "var(--s1)" },
+      { "id": "google",  "label": "Google Ads",     "paid": true,  "color": "var(--s2)" },
+      { "id": "tiktok",  "label": "TikTok",         "paid": true,  "color": "var(--s3)" },
+      { "id": "email",   "label": "E-mail",         "paid": false, "color": "var(--t3)" },
+      { "id": "organic", "label": "Organic Search", "paid": false, "color": "var(--t4)" },
+      { "id": "direct",  "label": "Direct",         "paid": false, "color": "var(--t5)" },
+      { "id": "referral","label": "Referral",       "paid": false, "color": "var(--faint)" }
+    ],
+    "ticket_types": [
+      { "id": "early_bird", "label": "Early Bird",          "price": 17,  "capacity": 1400, "color": "var(--t1)" },
+      { "id": "regular",    "label": "Regulier",            "price": 22,  "capacity": 1600, "color": "var(--t2)" },
+      { "id": "family",     "label": "Family (4 personen)", "price": 55,  "capacity": 250,  "color": "var(--t3)" },
+      { "id": "vip",        "label": "VIP",                 "price": 70,  "capacity": 120,  "color": "var(--t4)" },
+      { "id": "dealer",     "label": "Dealer / Exposant",   "price": 135, "capacity": 45,   "color": "var(--t5)" }
+    ]
+  },
+  "edition": {
+    "id": "e7",
+    "label": "Editie 7",
+    "event_date": "2026-09-20",
+    "event_weekday": "zondag",
+    "venue": "Expo Houten",
+    "goals": {
+      "tickets": 2500,
+      "revenue": 62500,
+      "ad_budget": 12500,
+      "roas_blended": 4.0,
+      "cpa_blended": 5.5,
+      "returning_rate": 35.0,
+      "attendance_rate": 90.0
+    },
+    "campaign_window_days": 60
+  },
+  "comparison": {
+    "previous": { "id": "e6", "label": "Editie 6", "event_date": "2026-06-14",
+      "at_same_dte": { "tickets": 1613, "revenue": 38953, "spend": 8371, "visitors": 23446, "returning_rate": 34.2 },
+      "final": { "tickets": 2180, "revenue": 54200 } },
+    "avg_last_3": { "label": "Gemiddelde laatste 3 edities",
+      "at_same_dte": { "tickets": 1498, "revenue": 35240, "spend": 7920, "visitors": 22910, "returning_rate": 30.9 } }
+  },
+  "sources": [
+    { "id": "eventix", "label": "Eventix",               "kind": "Ticketprovider", "abbr": "EX", "status": "connected",  "last_sync": "2026-09-03T21:56:00+02:00", "feeds": ["tickets","ticket_mix","attendance"] },
+    { "id": "meta",    "label": "Meta Ads",              "kind": "Advertenties",   "abbr": "MA", "status": "connected",  "last_sync": "2026-09-03T21:54:00+02:00", "feeds": ["channels","campaigns","creatives"] },
+    { "id": "google",  "label": "Google Ads",            "kind": "Advertenties",   "abbr": "GA", "status": "connected",  "last_sync": "2026-09-03T21:52:00+02:00", "feeds": ["channels","campaigns"] },
+    { "id": "ga4",     "label": "Google Analytics 4",    "kind": "Websitedata",    "abbr": "G4", "status": "connected",  "last_sync": "2026-09-03T21:47:00+02:00", "feeds": ["web","funnel","geo"] },
+    { "id": "tiktok",  "label": "TikTok Ads",            "kind": "Advertenties",   "abbr": "TT", "status": "syncing",    "last_sync": "2026-09-03T21:58:00+02:00", "feeds": ["channels","campaigns"] },
+    { "id": "mailchimp","label": "Mailchimp",            "kind": "E-mailplatform", "abbr": "MC", "status": "connected",  "last_sync": "2026-09-03T21:40:00+02:00", "feeds": ["email"] },
+    { "id": "crm",     "label": "HubSpot",               "kind": "CRM",            "abbr": "HS", "status": "connected",  "last_sync": "2026-09-03T21:34:00+02:00", "feeds": ["customers","retargeting"] },
+    { "id": "gsc",     "label": "Google Search Console", "kind": "SEO",            "abbr": "SC", "status": "connected",  "last_sync": "2026-09-03T18:58:00+02:00", "feeds": ["seo"] },
+    { "id": "gbp",     "label": "Google Bedrijfsprofiel","kind": "Reviews",        "abbr": "GB", "status": "attention",  "last_sync": "2026-08-31T21:58:00+02:00", "feeds": ["reviews"], "issue": "Token verlopen, opnieuw autoriseren" },
+    { "id": "costs",   "label": "Kostenadministratie",   "kind": "Eventkosten",    "abbr": "KA", "status": "disconnected","last_sync": null, "feeds": ["break_even"] },
+    { "id": "compint", "label": "Concurrentiemonitoring","kind": "Publieke bronnen","abbr": "CI","status": "connected",  "last_sync": "2026-09-03T20:58:00+02:00", "feeds": ["competitors"] }
+  ],
+  "data": {
+    "tickets": { "sold": 1842, "revenue": 46120, "orders": 1418, "unique_customers": 1386 },
+    "spend": { "total": 8740 },
+    "pace": {
+      "days":     [60,  55,  50,  45,  40,  35,  30,   26,   23,   20,   17,   14,   10,   7,    4,    2,    0],
+      "current":  [210, 350, 470, 605, 765, 950, 1160, 1298, 1448, 1610, 1842, null, null, null, null, null, null],
+      "previous": [168, 322, 448, 578, 712, 856, 1010, 1152, 1268, 1438, 1613, 1738, 1885, 1990, 2085, 2140, 2180],
+      "target":   [210, 405, 540, 685, 845, 1020,1210, 1372, 1500, 1640, 1790, 1930, 2100, 2225, 2350, 2430, 2500],
+      "forecast": [null,null,null,null,null,null,null,null, null, null, 1842, 1985, 2170, 2295, 2430, 2530, 2640],
+      "low":      [null,null,null,null,null,null,null,null, null, null, 1842, 1955, 2085, 2175, 2255, 2300, 2330],
+      "high":     [null,null,null,null,null,null,null,null, null, null, 1842, 2010, 2255, 2440, 2640, 2790, 2910]
+    },
+    "forecast": { "conservative": 2330, "expected": 2640, "optimistic": 2910,
+      "confidence": "hoog", "interval_pct": 80, "basis_editions": 6,
+      "break_even": null, "break_even_blocked_by": "costs" },
+    "channels": [
+      { "id": "meta",     "spend": 5420, "impressions": 412000, "clicks": 9480, "visitors": 8610, "checkouts": 1284, "tickets": 742, "revenue": 18940, "trend": [2.90,3.00,3.10,3.20,3.35,3.40,3.49] },
+      { "id": "google",   "spend": 2180, "impressions": 96400,  "clicks": 5240, "visitors": 4910, "checkouts": 682,  "tickets": 386, "revenue": 10320, "trend": [4.10,4.20,4.30,4.40,4.55,4.65,4.73] },
+      { "id": "tiktok",   "spend": 1140, "impressions": 175600, "clicks": 3120, "visitors": 2740, "checkouts": 268,  "tickets": 118, "revenue": 2680,  "trend": [2.90,2.80,2.70,2.60,2.50,2.42,2.35] },
+      { "id": "email",    "spend": 0,    "impressions": 0,      "clicks": 3441, "visitors": 3480, "checkouts": 336,  "tickets": 214, "revenue": 5480,  "trend": [1.00,1.10,1.30,1.20,1.40,1.50,1.60] },
+      { "id": "organic",  "spend": 0,    "impressions": 0,      "clicks": 2640, "visitors": 2640, "checkouts": 268,  "tickets": 156, "revenue": 3810,  "trend": [1.00,1.05,1.10,1.15,1.20,1.28,1.34] },
+      { "id": "direct",   "spend": 0,    "impressions": 0,      "clicks": 0,    "visitors": 1580, "checkouts": 186,  "tickets": 148, "revenue": 3520,  "trend": [1.00,1.10,1.15,1.20,1.30,1.38,1.45] },
+      { "id": "referral", "spend": 0,    "impressions": 0,      "clicks": 0,    "visitors": 860,  "checkouts": 96,   "tickets": 78,  "revenue": 1370,  "trend": [1.00,1.05,1.10,1.05,1.15,1.20,1.22] }
+    ],
+    "campaigns": [
+      { "id": "mp-eb",   "name": "Master Pullz · Early Bird",             "channel": "meta",   "audience": "Brede interesse NL 18-44",     "spend": 1980, "tickets": 246, "revenue": 5740, "status": "stable",  "trend": [2.60,2.70,2.80,2.85,2.90,2.88,2.90] },
+      { "id": "mp-rt30", "name": "Master Pullz · Retargeting 30D",        "channel": "meta",   "audience": "Websitebezoekers 30 dagen",    "spend": 860,  "tickets": 218, "revenue": 7240, "status": "scaling", "trend": [6.20,6.80,7.10,7.60,8.00,8.20,8.42] },
+      { "id": "mp-coll", "name": "Master Pullz · TCG Collectors",         "channel": "meta",   "audience": "Interesse verzamelkaarten 25-44","spend": 1240,"tickets": 152, "revenue": 3420, "status": "watch",   "trend": [3.10,3.00,2.95,2.90,2.85,2.80,2.76] },
+      { "id": "mp-lal",  "name": "Master Pullz · Lookalike Buyers",       "channel": "meta",   "audience": "Lookalike 2% kopers",          "spend": 780,  "tickets": 82,  "revenue": 1780, "status": "watch",   "trend": [2.60,2.50,2.45,2.40,2.35,2.30,2.28] },
+      { "id": "mp-lc",   "name": "Master Pullz · Last Chance",            "channel": "meta",   "audience": "Bezoekers editie 6",           "spend": 560,  "tickets": 44,  "revenue": 760,  "status": "pause",   "trend": [2.20,2.00,1.80,1.65,1.50,1.42,1.36] },
+      { "id": "mp-brand","name": "Master Pullz · Google Search Brand",    "channel": "google", "audience": "Merkzoekwoorden",              "spend": 640,  "tickets": 198, "revenue": 5360, "status": "scaling", "trend": [7.40,7.60,7.80,8.00,8.20,8.30,8.38] },
+      { "id": "mp-gen",  "name": "Master Pullz · Google Search Generiek", "channel": "google", "audience": "tcg beurs, pokemon beurs",     "spend": 980,  "tickets": 142, "revenue": 3680, "status": "stable",  "trend": [3.50,3.55,3.60,3.65,3.70,3.73,3.76] },
+      { "id": "mp-pmax", "name": "Master Pullz · Google Performance Max", "channel": "google", "audience": "Breed, automatisch",           "spend": 560,  "tickets": 46,  "revenue": 1280, "status": "watch",   "trend": [2.60,2.50,2.45,2.40,2.35,2.32,2.29] },
+      { "id": "mp-tt",   "name": "Master Pullz · TikTok Pull Reveals",    "channel": "tiktok", "audience": "Breed 18-34 NL",               "spend": 1140, "tickets": 118, "revenue": 2680, "status": "watch",   "trend": [2.90,2.80,2.70,2.60,2.50,2.42,2.35] }
+    ],
+    "creatives": [
+      { "id": "cr1", "name": "Pull moment, 15 seconden verticaal", "channel": "meta",   "format": "9:16 video",  "spend": 1420, "ctr": 3.12, "tickets": 208, "revenue": 6240, "frequency": 2.1, "recommendation": "scale" },
+      { "id": "cr2", "name": "Dealer hall walkthrough",            "channel": "meta",   "format": "9:16 video",  "spend": 980,  "ctr": 2.64, "tickets": 142, "revenue": 4180, "frequency": 1.8, "recommendation": "keep" },
+      { "id": "cr3", "name": "Early Bird countdown",               "channel": "meta",   "format": "1:1 video",   "spend": 760,  "ctr": 2.18, "tickets": 94,  "revenue": 2480, "frequency": 3.4, "recommendation": "fatigue" },
+      { "id": "cr4", "name": "Grading en trading station",         "channel": "meta",   "format": "4:5 static",  "spend": 640,  "ctr": 1.92, "tickets": 68,  "revenue": 1640, "frequency": 2.6, "recommendation": "watch" },
+      { "id": "cr5", "name": "Creator meet and greet",             "channel": "tiktok", "format": "9:16 video",  "spend": 520,  "ctr": 1.84, "tickets": 58,  "revenue": 1340, "frequency": 1.4, "recommendation": "keep" },
+      { "id": "cr6", "name": "Statisch keyvisual",                 "channel": "meta",   "format": "1:1 static",  "spend": 480,  "ctr": 0.96, "tickets": 34,  "revenue": 680,  "frequency": 4.2, "recommendation": "new_hook" }
+    ],
+    "creatives_coverage": { "shown": 6, "total": 24 },
+    "funnel": [
+      { "id": "impressions", "label": "Advertentie impressies", "value": 684000, "note": "Meta, Google en TikTok samen" },
+      { "id": "visitors",    "label": "Website bezoekers",      "value": 24820,  "note": "alle bronnen, ook organisch en direct" },
+      { "id": "ticketpage",  "label": "Ticketpagina bekeken",   "value": 8940,   "note": "" },
+      { "id": "checkout",    "label": "Checkout gestart",       "value": 3120,   "note": "" },
+      { "id": "purchase",    "label": "Ticket gekocht",         "value": 1842,   "note": "" }
+    ],
+    "weekly": [
+      { "start_dte": 60, "spend": 720,  "revenue": 1950 },
+      { "start_dte": 53, "spend": 900,  "revenue": 2460 },
+      { "start_dte": 46, "spend": 1140, "revenue": 3560 },
+      { "start_dte": 39, "spend": 1380, "revenue": 4810 },
+      { "start_dte": 32, "spend": 1680, "revenue": 6400 },
+      { "start_dte": 25, "spend": 2440, "revenue": 10720 },
+      { "start_dte": 18, "spend": 480,  "revenue": 2040, "partial_days": 2 }
+    ],
+    "ticket_mix": [
+      { "id": "early_bird", "sold": 1355, "revenue": 23035 },
+      { "id": "regular",    "sold": 240,  "revenue": 5280 },
+      { "id": "family",     "sold": 126,  "revenue": 6930 },
+      { "id": "vip",        "sold": 84,   "revenue": 5880 },
+      { "id": "dealer",     "sold": 37,   "revenue": 4995 }
+    ],
+    "geo": [
+      { "label": "Overig Nederland", "tickets": 398, "revenue": 9840, "spend": 2002, "repeat_rate": 28.7 },
+      { "label": "Amsterdam",        "tickets": 268, "revenue": 6720, "spend": 1185, "repeat_rate": 34.1 },
+      { "label": "Rotterdam",        "tickets": 246, "revenue": 6140, "spend": 1127, "repeat_rate": 31.8 },
+      { "label": "Utrecht",          "tickets": 231, "revenue": 5980, "spend": 952,  "repeat_rate": 41.6 },
+      { "label": "Eindhoven",        "tickets": 186, "revenue": 4660, "spend": 882,  "repeat_rate": 35.2 },
+      { "label": "Den Haag",         "tickets": 164, "revenue": 4020, "spend": 797,  "repeat_rate": 29.4 },
+      { "label": "Arnhem",           "tickets": 142, "revenue": 3520, "spend": 665,  "repeat_rate": 33.9 },
+      { "label": "Breda",            "tickets": 118, "revenue": 2910, "spend": 592,  "repeat_rate": 30.6 },
+      { "label": "Vlaanderen (BE)",  "tickets": 89,  "revenue": 2330, "spend": 538,  "repeat_rate": 22.4 }
+    ],
+    "web": {
+      "visitors": 24820,
+      "sessions": 46620,
+      "devices": [
+        { "id": "mobile",  "label": "Mobiel",  "sessions": 29370, "tickets": 910 },
+        { "id": "desktop", "label": "Desktop", "sessions": 17250, "tickets": 932 }
+      ],
+      "landing_pages": [
+        { "path": "/tickets",   "sessions": 14280, "tickets": 977 },
+        { "path": "/",          "sessions": 18640, "tickets": 533 },
+        { "path": "/programma", "sessions": 6420,  "tickets": 204 },
+        { "path": "/dealers",   "sessions": 4180,  "tickets": 77 },
+        { "path": "/info",      "sessions": 3100,  "tickets": 51 }
+      ]
+    },
+    "attendance": { "edition_id": "e6", "edition_label": "Editie 6", "event_date": "2026-06-14",
+      "sold": 2180, "scanned": 1964, "unique_visitors": 1772, "first_time": 1194, "returning": 578 },
+    "customers": { "new": 859, "returning": 527, "returning_from_previous": 486, "returning_from_older": 41,
+      "multi_edition": 218, "database_size": 4860,
+      "repeat_by_edition": [
+        { "label": "E2", "rate": 12.4 }, { "label": "E3", "rate": 18.6 }, { "label": "E4", "rate": 24.1 },
+        { "label": "E5", "rate": 29.8 }, { "label": "E6", "rate": 34.2 }, { "label": "E7", "rate": 38.0, "current": true }
+      ] },
+    "retargeting": [
+      { "id": "prev-visitors", "label": "Bezoeker editie 6, geen ticket", "size": 1286, "pool": 1772, "pool_label": "fysieke bezoekers", "prior_conversion": 14.2, "last_activity": "3 dagen geleden", "channel": "E-mail + Meta", "cta": "Maak campagne", "priority": true },
+      { "id": "abandoned",     "label": "Checkout verlaten, 14 dagen",    "size": 428,  "pool": 1278, "pool_label": "niet afgeronde checkouts", "prior_conversion": 21.6, "last_activity": "vandaag", "channel": "Meta dynamic + e-mail", "cta": "Retarget", "priority": true },
+      { "id": "web-noticket",  "label": "Website bezocht, geen ticket",   "size": 6840, "pool": null, "pool_label": "unieke bezoekers, 30 dagen", "prior_conversion": 3.4, "last_activity": "vandaag", "channel": "Meta prospecting", "cta": "Doelgroep bekijken", "priority": false },
+      { "id": "loyal",         "label": "Meerdere edities bezocht",       "size": 524,  "pool": 742,  "pool_label": "loyale bezoekers", "prior_conversion": 28.9, "last_activity": "2 dagen geleden", "channel": "E-mail, persoonlijk", "cta": "VIP-campagne", "priority": true }
+    ],
+    "email": [
+      { "id": "em-eb",   "name": "Early Bird opening",      "type": "Early Bird",   "recipients": 8180, "open_rate": 51.2, "click_rate": 14.8, "tickets": 108, "revenue": 2640 },
+      { "id": "em-ann",  "name": "Aankondiging editie 7",   "type": "Aankondiging", "recipients": 8420, "open_rate": 42.6, "click_rate": 8.4,  "tickets": 46,  "revenue": 1180 },
+      { "id": "em-rem",  "name": "Reminder 30 dagen",       "type": "Reminder",     "recipients": 7940, "open_rate": 38.4, "click_rate": 7.2,  "tickets": 38,  "revenue": 980 },
+      { "id": "em-lc",   "name": "Laatste kans Early Bird", "type": "Last Chance",  "recipients": 7860, "open_rate": 44.8, "click_rate": 12.1, "tickets": 22,  "revenue": 680 },
+      { "id": "em-post", "name": "Bedankt voor editie 6",   "type": "Post-event",   "recipients": 6480, "open_rate": 46.2, "click_rate": 6.8,  "tickets": 0,   "revenue": 0, "edition_id": "e6" }
+    ],
+    "email_list_size": 8420,
+    "seo": [
+      { "keyword": "pokémon beurs",           "position": 4,  "previous_position": 7,  "clicks": 984, "impressions": 18420, "landing_page": "/" },
+      { "keyword": "pokemon beurs nederland", "position": 2,  "previous_position": 2,  "clicks": 682, "impressions": 7640,  "landing_page": "/" },
+      { "keyword": "tcg beurs",               "position": 6,  "previous_position": 4,  "clicks": 342, "impressions": 9180,  "landing_page": "/tcg-beurs" },
+      { "keyword": "tcg beurs nederland",     "position": 3,  "previous_position": 5,  "clicks": 286, "impressions": 4120,  "landing_page": "/tcg-beurs" },
+      { "keyword": "pokemon kaarten beurs",   "position": 8,  "previous_position": 11, "clicks": 178, "impressions": 6480,  "landing_page": "/tickets" },
+      { "keyword": "pokemon evenement 2026",  "position": 12, "previous_position": 9,  "clicks": 82,  "impressions": 5240,  "landing_page": "/" },
+      { "keyword": "Overig (long tail)",      "position": null,"previous_position": null,"clicks": 86, "impressions": 0,    "landing_page": "diverse" }
+    ],
+    "competitors": [
+      { "name": "TCG Con Rotterdam",     "location": "Rotterdam", "event_date": "2026-10-11", "ticket_price_from": 14.50, "ad_activity": "high",   "active_creatives": 18, "google_visibility": 62, "last_change": "Nieuwe advertentieset",  "last_change_ago": "2 dagen" },
+      { "name": "Collectors Fair Zwolle","location": "Zwolle",    "event_date": "2026-09-27", "ticket_price_from": 10.00, "ad_activity": "high",   "active_creatives": 12, "google_visibility": 34, "last_change": "Nieuwe advertentie",     "last_change_ago": "1 dag" },
+      { "name": "Cardfest Eindhoven",    "location": "Eindhoven", "event_date": "2026-10-04", "ticket_price_from": 12.00, "ad_activity": "medium", "active_creatives": 7,  "google_visibility": 41, "last_change": "Ticketprijs verlaagd",   "last_change_ago": "5 dagen" },
+      { "name": "Dutch Card Expo",       "location": "Utrecht",   "event_date": "2026-11-15", "ticket_price_from": 19.50, "ad_activity": "low",    "active_creatives": 3,  "google_visibility": 28, "last_change": "Nieuwe eventdatum",      "last_change_ago": "8 dagen" }
+    ],
+    "reviews": {
+      "distribution": [ { "stars": 5, "count": 248 }, { "stars": 4, "count": 62 }, { "stars": 3, "count": 18 }, { "stars": 2, "count": 8 }, { "stars": 1, "count": 6 } ],
+      "new_this_month": 28, "responded": 269,
+      "recent": [
+        { "stars": 5, "author": "Jeroen V.", "ago": "2 dagen geleden", "text": "Beste TCG-beurs van Nederland. Goede mix van dealers en de trading tafels waren de hele dag vol. Entree was op tijd geregeld.", "responded": false },
+        { "stars": 2, "author": "Sanne D.",  "ago": "4 dagen geleden", "text": "Prima dealers maar de rij bij de ingang stond een uur stil. Met een ticket vooraf verwacht je dat toch anders.", "responded": false, "draft_reply": "Gaat in op de wachtrij en verwijst naar de nieuwe tijdsloten" },
+        { "stars": 5, "author": "Milan K.",  "ago": "6 dagen geleden", "text": "Vierde keer geweest en het wordt elke editie beter georganiseerd. Grading corner was een goede toevoeging.", "responded": true },
+        { "stars": 4, "author": "Fleur B.",  "ago": "1 week geleden",  "text": "Leuke dag gehad met de kinderen. Familietickets zijn scherp geprijsd. Wel wat weinig zitplaatsen.", "responded": true }
+      ]
+    },
+    "alerts": [
+      { "id": "al-pace",   "severity": "warn", "title": "Tickettempo loopt terug", "body": "De laatste 3 dagen zijn er gemiddeld <b>47 tickets per dag</b> verkocht tegen <b>53 per dag</b> in de 3 dagen daarvoor. Dat is 11,3% minder. De forecast van 2.640 gaat uit van een oplopend tempo naar de laatste week toe.", "cta": "Bekijk oorzaak", "target": "tickets", "ago": "12 min" },
+      { "id": "al-rt",     "severity": "good", "title": "Meta retargeting presteert sterk", "body": "Master Pullz · Retargeting 30D haalt <b>8,42x ROAS</b> over de laatste 7 dagen bij een CPA van <b>€ 3,94</b>. De campagne zit op € 860 spend, ruim onder het niveau waarop de resultaten normaal afvlakken.", "cta": "Budget +15% testen", "target": "marketing", "ago": "1 uur" },
+      { "id": "al-mob",    "severity": "warn", "title": "Mobiele checkout converteert lager", "body": "Mobiel converteert op <b>3,10%</b> tegen <b>5,40%</b> op desktop, een verschil van 42,6%. Mobiel is goed voor 63,0% van de sessies maar 49,4% van de tickets. Bij gelijke conversie waren dat 1.586 tickets geweest in plaats van 910.", "cta": "Onderzoeken", "target": "bezoekers", "ago": "3 uur" },
+      { "id": "al-retarg", "severity": "info", "title": "1.286 eerdere bezoekers zonder ticket", "body": "Zij bezochten editie 6 fysiek maar hebben nog geen ticket voor editie 7. Deze groep converteerde vorige editie op <b>14,2%</b> via e-mail en Meta.", "cta": "Retargeting starten", "target": "retargeting", "ago": "5 uur" },
+      { "id": "al-cre",    "severity": "bad",  "title": "Statisch keyvisual is uitgewerkt", "body": "Frequentie <b>4,2</b> met een CTR van <b>0,96%</b> en <b>1,42x ROAS</b>. De creative kost € 480 en levert 34 tickets. Alle andere creatives doen het beter.", "cta": "Creative pauzeren", "target": "creatives", "ago": "8 uur" },
+      { "id": "al-eb",     "severity": "warn", "title": "Early Bird is bijna uitverkocht", "body": "Nog <b>45 van 1.400</b> Early Bird tickets beschikbaar, 96,8% sell-through. Reguliere tickets staan op 15,0%. De gemiddelde ticketprijs stijgt hierna van € 17,00 naar € 22,00.", "cta": "Prijsovergang plannen", "target": "tickets", "ago": "11 uur" }
+    ]
+  }
+}
