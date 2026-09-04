@@ -11,7 +11,7 @@
       "base_url": null,
       "script": "sh hermes/run.sh demo",
       "no_agent": true,
-      "workdir": "/Users/kylianhos/agent agency/masterpullz-os",
+      "workdir": "AUTO",
       "schedule": {
         "kind": "cron",
         "expr": "5 * * * *",
@@ -35,7 +35,7 @@
       "base_url": null,
       "script": null,
       "no_agent": false,
-      "workdir": "/Users/kylianhos/agent agency/masterpullz-os",
+      "workdir": "AUTO",
       "schedule": {
         "kind": "cron",
         "expr": "15 7 * * *",

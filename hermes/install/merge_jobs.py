@@ -6,8 +6,12 @@ Neemt een bestaande job als vorm-sjabloon, zodat elk veld dat Hermes verwacht
 aanwezig is. Bestaande jobs met hetzelfde id worden overgeschreven, de rest
 blijft ongemoeid.
 """
-import json, sys, time
+import json, os, sys
 from datetime import datetime, timezone
+
+# De projectmap verschilt per machine. Nooit vertrouwen op wat er in
+# cron.jobs.json staat, altijd afleiden van waar dit bestand echt staat.
+PROJECT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 RUNSTATE = {"state": "idle", "paused_at": None, "paused_reason": None,
             "next_run_at": None, "last_run_at": None, "last_status": None,
@@ -34,11 +38,12 @@ def main(jobs_path, new_path):
         merged = dict(template)          # alle velden die Hermes kent
         merged.update(RUNSTATE)          # runstatus leeg
         merged.update(job)               # onze waarden erover
+        merged["workdir"] = PROJECT      # pad van deze machine, niet uit de json
         merged.setdefault("created_at", now)
         merged["schedule_display"] = job["schedule"].get("display", "")
         was = "bijgewerkt" if job["id"] in by_id else "toegevoegd"
         by_id[job["id"]] = merged
-        print(f"  {job['id']:<16} {was}   {merged['schedule_display']}")
+        print(f"  {job['id']:<16} {was}   {merged['schedule_display']}   {PROJECT}")
 
     doc["jobs"] = list(by_id.values())
     doc["updated_at"] = now
